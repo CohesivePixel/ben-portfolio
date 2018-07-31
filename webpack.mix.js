@@ -25,5 +25,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'components': path.resolve(__dirname, 'resources/assets/js/components'),
         'assets': path.resolve(__dirname, 'resources/assets')
       }
+    },
+    devServer: {
+      contentBase: path.resolve(__dirname, 'public')
     }
    })

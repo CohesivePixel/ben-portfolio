@@ -14,7 +14,7 @@ require('assets/scss/main.scss');
 Event = new Vue();
 
 export let common = {
-    active: 1,
+    active: 0,
     complete: 6,
     vertical: 0,
     colour: {
