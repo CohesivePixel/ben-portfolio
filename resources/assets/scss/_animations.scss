@@ -1,0 +1,86 @@
+$divider-distance: 2vh;
+$slide-distance: 200%;
+$slide-in-duration: .5s;
+$slide-out-duration: .9s;
+
+/*
+ * Title Animation
+ */
+.title-slide-leave-active {
+  transition: all $slide-out-duration ease;
+  transition-delay: .3s;
+  transform: translateX($slide-distance);
+}
+
+.title-slide-enter-active {
+  transition: all $slide-in-duration ease;
+}
+
+.title-slide-enter {
+  transform: translateX($slide-distance);
+}
+/*
+ * End of Title Animation
+ */
+
+/*
+ * Divider animation
+ */
+.divider-slide-leave-active {
+  transition: all $slide-out-duration ease;
+  transition-delay: .1s;
+  transform: translateX($slide-distance);
+}
+
+.divider-slide-enter-active {
+  transition: all $slide-in-duration ease;
+  transition-delay: .8s;
+}
+
+.divider-slide-enter {
+  transform: translateX($slide-distance);
+}
+/*
+ * End of Divider Animation
+ */
+
+/*
+ * Description Animation
+ */
+.description-slide-leave-active {
+  transition: all $slide-out-duration ease;
+  transition-delay: .5s;
+  transform: translateX($slide-distance);
+}
+
+.description-slide-enter-active {
+  transition: all $slide-in-duration ease;
+  transition-delay: .4s;
+}
+
+.description-slide-enter {
+  transform: translateX($slide-distance);
+}
+/*
+ * Description Animation
+ */
+
+/*
+* Work Softbox animation
+*/
+.picture-slide-leave-active {
+ transition: all 1.5s ease;
+ transition-delay: .6s;
+ transform: translateX(-200%);
+}
+
+.picture-slide-enter-active {
+ transition: all .8s ease;
+}
+
+.picture-slide-enter {
+ transform: translateX(-200%);
+}
+/*
+ * End of Work Softbox animation
+ */
