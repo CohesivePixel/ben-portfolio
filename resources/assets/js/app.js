@@ -6,7 +6,7 @@
 // DONE: Remove Ben-Ey from mobile
 // TODO: Add title and text to mobile
 // TODO: Add social icons to mobile
-// TODO: Set slide correctly when switching from landscape to portrait
+// DONE: Set slide correctly when switching from landscape to portrait
 // TODO: Loading screen {use plugin for that}
 
 import Vue from 'vue'

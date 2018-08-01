@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="swiper-container">
-    <swiper :options="swipeCustoms" ref="workSwiper" @slideNextTransitionStart="nextCard" @slidePrevTransitionStart="prevCard">
+    <swiper :options="swipeCustoms" ref="workSwiper" @slideChange="switchCard">
         <swiper-slide v-for="work in orderedWorks" :key="work.page">
           <img :class="[work.vertical ? styles.vertical: styles.horizontal, styles.picture]" :src="work.source"/>
         </swiper-slide>
@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       shared: common,
+      activeSet: '',
       swipeCustoms: {
         slidesPerView: 'auto',
         centeredSlides: true,
@@ -35,12 +36,6 @@ export default {
     }
   },
 
-  computed: {
-    swiper() {
-      return this.$refs.workSwiper.swiper;
-    }
-  },
-
   created() {
     for(let i = 0; i < this.shared.complete; i++) {
       this.axios.get('/v1/works/' + i + '/image')
@@ -54,16 +49,28 @@ export default {
     }
   },
 
+  computed: {
+    swiper() {
+      return this.$refs.workSwiper.swiper;
+    },
+    active() {
+      return this.shared.active
+    }
+  },
+
+  watch: {
+    active() {
+      this.swiper.slideTo(this.shared.active)
+    }
+  },
+
   methods: {
     sortWorks() {
       this.orderedWorks = _.sortBy(this.works, ['page'])
     },
-    nextCard() {
-      this.shared.active += 1;
-      Event.$emit('swipe');
-    },
-    prevCard() {
-      this.shared.active -= 1;
+    switchCard() {
+      this.shared.active = this.swiper.activeIndex;
+      console.log(this.swiper.activeIndex);
       Event.$emit('swipe');
     }
   }
@@ -93,9 +100,5 @@ export default {
   .swiper-slide-vertical {
       width: 40vw;
       margin-left: 20vw;
-  }
-
-  .swiper-slide-horizontal {
-
   }
 </style>
