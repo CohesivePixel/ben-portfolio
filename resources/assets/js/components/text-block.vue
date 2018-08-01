@@ -77,9 +77,23 @@ export default {
     float: right;
     margin: 0 7vw;
 
+    @media(max-aspect-ratio: 1/1) {
+      position: fixed;
+      left: 0;
+    }
+
+    .work-title {
+      font-family: 'Open-Sans-ExtraBold';
+      font-size: 3.4vw;
+      color: white;
+      width: 100%;
+      margin: 0 0 $divider-distance 0;
+      letter-spacing: 5px;
+      text-align: right;
+    }
+
     .work-text {
-      font-family: "Open Sans";
-      font-weight: 100;
+      font-family: 'Open-Sans-Light';
       font-size: 1.1vw;
       color: white;
       width: 100%;
@@ -88,28 +102,13 @@ export default {
       margin-top: $divider-distance;
     }
 
-    .work-title {
-      font-family: "Open Sans";
-      font-weight: 800;
-      font-size: 3.4vw;
-      color: white;
-      width: 100%;
-      margin: 0 0 $divider-distance 0;
-      letter-spacing: 5px;
-      text-align: right;
+    .divider {
+      border: 1px solid white;
+      float: right;
+      display: block;
+      background-color: white;
     }
-  }
 
-  .divider {
-    border: 1px solid white;
-    float: right;
-    display: block;
-    background-color: white;
-  }
 
-  @media(max-aspect-ratio: 1/1) {
-    .elemental-cock {
-      display: none;
-    }
   }
 </style>

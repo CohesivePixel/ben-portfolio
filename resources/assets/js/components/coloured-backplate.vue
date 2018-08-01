@@ -2,15 +2,15 @@
   <div class="backplate-container">
     <div class="desktop-backplate">
       <svg width="100%" viewBox="0 0 100 100" preserveAspectRatio="xMaxYMax">
-        <polygon points="100,100 100,0 65,0 25,100" v-if="shared.colour.vibrant" :style="styles.desktopBackplate" />
+        <polygon points="100,100 100,0 65,0 25,100" v-if="shared.colour.vibrant" :style="styles.backPlate" />
       </svg>
     </div>
     <div class="mobile-backplate">
       <svg class="topAngle" width="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <polygon points="100,100 100,0 60,0 0,100" :style="styles.mobileBackplate"/>
+        <polygon points="100,100 100,0 60,0 0,100" :style="styles.backPlate"/>
       </svg>
       <svg :style="styles.bottomSquare" width="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <rect x="0" y="0" width="100" height="100" :style="styles.mobileBackplate"></rect>
+        <rect x="0" y="0" width="100" height="100" :style="styles.backPlate"></rect>
       </svg>
     </div>
   </div>
@@ -24,11 +24,7 @@ export default {
     return {
       shared: common,
       styles: {
-        desktopBackplate: {
-          fill: '',
-          transition: 'fill .85s ease'
-        },
-        mobileBackplate: {
+        backPlate: {
           fill: '',
           transition: 'fill .85s ease'
         },
@@ -52,8 +48,7 @@ export default {
 
   methods: {
     setReady() {
-      this.styles.desktopBackplate.fill = this.shared.colour.vibrant;
-      this.styles.mobileBackplate.fill = this.shared.colour.vibrant;
+      this.styles.backPlate.fill = this.shared.colour.vibrant;
       this.styles.bottomSquare.height = '30vh';
     }
   }
@@ -61,13 +56,13 @@ export default {
 </script>
 
 <style lang="scss">
+
   svg {
     float: left
   }
 
   .backplate-container {
     height: 100%;
-
     .desktop-backplate {
       position: absolute;
       bottom: 0;
@@ -76,7 +71,6 @@ export default {
       height: 100%;
       width: 100%;
       overflow: hidden;
-
       @media(max-aspect-ratio: 1/1) {
         display: none;
       }
@@ -89,21 +83,18 @@ export default {
       bottom: 0;
       width: 100%;
       z-index: -1;
-
-      @media(min-aspect-ratio: 1/1) {
-        display: none;
-      }
-
       .topAngle {
-          height: 25vh;
-          order: 1;
+        height: 25vh;
+        order: 1;
       }
-
       .bottomSquare {
         height: 30vh;
         margin-top: -1px;
         order: 2;
         flex-grow: 1;
+      }
+      @media(min-aspect-ratio: 1/1) {
+        display: none;
       }
     }
   }

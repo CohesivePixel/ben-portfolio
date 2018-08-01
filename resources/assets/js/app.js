@@ -2,8 +2,8 @@
 // TODO: Mobile Version
 // DONE: Fix swapping-resize bug on chrome
 // TODO: Determine aspect ratio, set globally and define components based on that
-// TODO: Add SVG to Mobile
-// TODO: Remove Ben-Ey from mobile
+// DONE: Add SVG to Mobile
+// DONE: Remove Ben-Ey from mobile
 // TODO: Add title and text to mobile
 // TODO: Add social icons to mobile
 // TODO: Set slide correctly when switching from landscape to portrait

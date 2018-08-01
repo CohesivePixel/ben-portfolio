@@ -1813,6 +1813,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1820,14 +1830,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       shared: __WEBPACK_IMPORTED_MODULE_0_src_app_js__["common"],
-      backPlateStyle: {
-        fill: '',
-        transition: 'fill .85s ease'
+      styles: {
+        backPlate: {
+          fill: '',
+          transition: 'fill .85s ease'
+        },
+        bottomSquare: {
+          height: '',
+          marginTop: '-1px',
+          order: '2',
+          flexGrow: '1'
+        }
       }
     };
   },
+  created: function created() {
+    this.setReady();
+  },
   beforeUpdate: function beforeUpdate() {
-    this.backPlateStyle.fill = this.shared.colour.vibrant;
+    this.setReady();
+  },
+
+
+  methods: {
+    setReady: function setReady() {
+      this.styles.backPlate.fill = this.shared.colour.vibrant;
+      this.styles.bottomSquare.height = '30vh';
+    }
   }
 });
 
@@ -2072,21 +2101,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       shared: __WEBPACK_IMPORTED_MODULE_0_src_app_js__["common"],
       blockTitle: '',
       blockText: '',
-      showTitle: 1,
-      showDivider: 1,
-      showDescription: 1
+      visible: 1
     };
   },
   created: function created() {
     var _this = this;
 
     this.setBlockHeight();
-    this.getTitle();
-    this.getDesc();
+    this.getInfo();
 
     Event.$on('swipe', function () {
       _this.slideOut();
     });
+  },
+  beforeUpdate: function beforeUpdate() {
+    this.setBlockHeight();
   },
 
 
@@ -2095,33 +2124,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var imgFrame = document.getElementById('pic');
       return;
     },
-    getTitle: function getTitle() {
+    getInfo: function getInfo() {
       var _this2 = this;
 
-      this.axios.get('/v1/works/' + this.shared.active + '/title').then(function (response) {
-        return _this2.blockTitle = response.data[0];
-      });
-      return;
-    },
-    getDesc: function getDesc() {
-      var _this3 = this;
-
-      this.axios.get('/v1/works/' + this.shared.active + '/description').then(function (response) {
-        return _this3.blockText = response.data[0];
+      this.axios.get('/v1/works/' + this.shared.active + '/information').then(function (response) {
+        _this2.blockTitle = response.data[0];
+        _this2.blockText = response.data[1];
       });
       return;
     },
     slideOut: function slideOut() {
-      this.showTitle = 0;
-      this.showDivider = 0;
-      this.showDescription = 0;
+      this.visible = 0;
     },
-    changeState: function changeState() {
-      this.getTitle();
-      this.getDesc();
-      this.showTitle = 1;
-      this.showDivider = 1;
-      this.showDescription = 1;
+    slideIn: function slideIn() {
+      this.getInfo();
+      this.visible = 1;
     }
   }
 });
@@ -7927,7 +7944,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/*\n * Title Animation\n */\n.title-slide-leave-active {\n  transition: all 0.9s ease;\n  transition-delay: .3s;\n  transform: translateX(200%); }\n\n.title-slide-enter-active {\n  transition: all 0.5s ease; }\n\n.title-slide-enter {\n  transform: translateX(200%); }\n\n/*\n * End of Title Animation\n */\n/*\n * Divider animation\n */\n.divider-slide-leave-active {\n  transition: all 0.9s ease;\n  transition-delay: .1s;\n  transform: translateX(200%); }\n\n.divider-slide-enter-active {\n  transition: all 0.5s ease;\n  transition-delay: .8s; }\n\n.divider-slide-enter {\n  transform: translateX(200%); }\n\n/*\n * End of Divider Animation\n */\n/*\n * Description Animation\n */\n.description-slide-leave-active {\n  transition: all 0.9s ease;\n  transition-delay: .5s;\n  transform: translateX(200%); }\n\n.description-slide-enter-active {\n  transition: all 0.5s ease;\n  transition-delay: .4s; }\n\n.description-slide-enter {\n  transform: translateX(200%); }\n\n/*\n * Description Animation\n */\n/*\n* Work Softbox animation\n*/\n.picture-slide-leave-active {\n  transition: all 1.5s ease;\n  transition-delay: .6s;\n  transform: translateX(-200%); }\n\n.picture-slide-enter-active {\n  transition: all .8s ease; }\n\n.picture-slide-enter {\n  transform: translateX(-200%); }\n\n/*\n * End of Work Softbox animation\n */\n/**\n/// Avenir Black\n**/\n@font-face {\n  font-family: 'Avenir-Black';\n  src: url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.woff2")) + ") format(\"woff2\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.svg")) + ") format(\"svg\");\n  font-weight: 900;\n  font-style: normal; }\n\nhtml, body {\n  height: 100%;\n  margin: 0;\n  overflow: hidden; }\n", ""]);
+exports.push([module.i, "/*\n * Title Animation\n */\n.title-slide-leave-active {\n  transition: all 0.9s ease;\n  transition-delay: .3s;\n  transform: translateX(200%); }\n\n.title-slide-enter-active {\n  transition: all 0.5s ease; }\n\n.title-slide-enter {\n  transform: translateX(200%); }\n\n/*\n * End of Title Animation\n */\n/*\n * Divider animation\n */\n.divider-slide-leave-active {\n  transition: all 0.9s ease;\n  transition-delay: .1s;\n  transform: translateX(200%); }\n\n.divider-slide-enter-active {\n  transition: all 0.5s ease;\n  transition-delay: .8s; }\n\n.divider-slide-enter {\n  transform: translateX(200%); }\n\n/*\n * End of Divider Animation\n */\n/*\n * Description Animation\n */\n.description-slide-leave-active {\n  transition: all 0.9s ease;\n  transition-delay: .5s;\n  transform: translateX(200%); }\n\n.description-slide-enter-active {\n  transition: all 0.5s ease;\n  transition-delay: .4s; }\n\n.description-slide-enter {\n  transform: translateX(200%); }\n\n/*\n * Description Animation\n */\n/*\n* Work Softbox animation\n*/\n.picture-slide-leave-active {\n  transition: all 1.5s ease;\n  transition-delay: .6s;\n  transform: translateX(-200%); }\n\n.picture-slide-enter-active {\n  transition: all .8s ease; }\n\n.picture-slide-enter {\n  transform: translateX(-200%); }\n\n/*\n * End of Work Softbox animation\n */\n/**\n/// Avenir Black\n**/\n@font-face {\n  font-family: 'Avenir-Black';\n  src: url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Avenir-Black/Avenir-Black.woff2")) + ") format(\"woff2\");\n  font-weight: 900;\n  font-style: normal; }\n\n/**\n/// Open Sans\n**/\n@font-face {\n  font-family: 'Open-Sans-ExtraBold';\n  src: url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.woff2")) + ") format(\"woff2\"); }\n\n@font-face {\n  font-family: 'Open-Sans-Light';\n  src: url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.woff2")) + ") format(\"woff2\"); }\n\n@font-face {\n  font-family: 'Open-Sans-Regular';\n  src: url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.woff2")) + ") format(\"woff2\"); }\n\n@font-face {\n  font-family: 'Open-Sans-SemiBold';\n  src: url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.woff2")) + ") format(\"woff2\"); }\n\nhtml, body {\n  height: 100%;\n  margin: 0;\n  overflow: hidden; }\n", ""]);
 
 // exports
 
@@ -7972,7 +7989,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.author-title {\n  padding-top: 4.5vh;\n  padding-left: 5vw;\n  margin: 0;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.author-title {\n      padding-top: 0;\n      padding-left: 9.5vw;\n}\n}\n.author-title .lastname, .author-title .firstname {\n    font-family: 'Avenir-Black';\n    font-size: 2.8vw;\n    float: left;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.author-title .lastname, .author-title .firstname {\n        font-size: 5vw;\n}\n}\n.author-title .firstname {\n    margin-right: 1.6vw;\n}\n", ""]);
+exports.push([module.i, "\n.author-title {\n  padding-top: 4.5vh;\n  padding-left: 5vw;\n  margin: 0;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.author-title {\n      display: none;\n}\n}\n.author-title .lastname, .author-title .firstname {\n    font-family: 'Avenir-Black';\n    font-size: 2.8vw;\n    float: left;\n}\n.author-title .firstname {\n    margin-right: 1.6vw;\n}\n", ""]);
 
 // exports
 
@@ -8002,7 +8019,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.backplate {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  z-index: -1;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.backplate {\n    display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\nsvg {\n  float: left;\n}\n.backplate-container {\n  height: 100%;\n}\n.backplate-container .desktop-backplate {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    z-index: -1;\n    height: 100%;\n    width: 100%;\n    overflow: hidden;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.backplate-container .desktop-backplate {\n        display: none;\n}\n}\n.backplate-container .mobile-backplate {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    z-index: -1;\n}\n.backplate-container .mobile-backplate .topAngle {\n      height: 25vh;\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n}\n.backplate-container .mobile-backplate .bottomSquare {\n      height: 30vh;\n      margin-top: -1px;\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      -webkit-box-flex: 1;\n          -ms-flex-positive: 1;\n              flex-grow: 1;\n}\n@media (min-aspect-ratio: 1 / 1) {\n.backplate-container .mobile-backplate {\n        display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -8032,7 +8049,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n#app {\n  height: 100%;\n}\n.content-container {\n  position: absolute;\n  width: 100%;\n  top: 50%;\n  -webkit-transform: translateY(-45%);\n          transform: translateY(-45%);\n}\n", ""]);
+exports.push([module.i, "\n#app {\n  height: 100%;\n}\n.content-container {\n  position: absolute;\n  width: 100%;\n  top: 50%;\n  -webkit-transform: translateY(-45%);\n          transform: translateY(-45%);\n  overflow: hidden;\n}\n", ""]);
 
 // exports
 
@@ -8047,7 +8064,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.text-block {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 25vw;\n  float: right;\n  margin: 0 7vw;\n}\n.text-block .work-text {\n    font-family: \"Open Sans\";\n    font-weight: 100;\n    font-size: 1.1vw;\n    color: white;\n    width: 100%;\n    letter-spacing: 0.35px;\n    float: left;\n    margin-top: 2vh;\n}\n.text-block .work-title {\n    font-family: \"Open Sans\";\n    font-weight: 800;\n    font-size: 3.4vw;\n    color: white;\n    width: 100%;\n    margin: 0 0 2vh 0;\n    letter-spacing: 5px;\n    text-align: right;\n}\n.divider {\n  border: 1px solid white;\n  float: right;\n  display: block;\n  background-color: white;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.elemental-cock {\n    display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.text-block {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 25vw;\n  float: right;\n  margin: 0 7vw;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.text-block {\n      position: fixed;\n      left: 0;\n}\n}\n.text-block .work-title {\n    font-family: 'Open-Sans-ExtraBold';\n    font-size: 3.4vw;\n    color: white;\n    width: 100%;\n    margin: 0 0 2vh 0;\n    letter-spacing: 5px;\n    text-align: right;\n}\n.text-block .work-text {\n    font-family: 'Open-Sans-Light';\n    font-size: 1.1vw;\n    color: white;\n    width: 100%;\n    letter-spacing: 0.35px;\n    float: left;\n    margin-top: 2vh;\n}\n.text-block .divider {\n    border: 1px solid white;\n    float: right;\n    display: block;\n    background-color: white;\n}\n", ""]);
 
 // exports
 
@@ -42429,25 +42446,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "backplate" }, [
-    _c(
-      "svg",
-      {
-        attrs: {
-          width: "100%",
-          viewBox: "0 0 100 100",
-          preserveAspectRatio: "xMaxYMax"
-        }
-      },
-      [
-        _vm.shared.colour.vibrant
-          ? _c("polygon", {
-              style: _vm.backPlateStyle,
-              attrs: { points: "100,100 100,0 65,0 25,100" }
-            })
-          : _vm._e()
-      ]
-    )
+  return _c("div", { staticClass: "backplate-container" }, [
+    _c("div", { staticClass: "desktop-backplate" }, [
+      _c(
+        "svg",
+        {
+          attrs: {
+            width: "100%",
+            viewBox: "0 0 100 100",
+            preserveAspectRatio: "xMaxYMax"
+          }
+        },
+        [
+          _vm.shared.colour.vibrant
+            ? _c("polygon", {
+                style: _vm.styles.backPlate,
+                attrs: { points: "100,100 100,0 65,0 25,100" }
+              })
+            : _vm._e()
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "mobile-backplate" }, [
+      _c(
+        "svg",
+        {
+          staticClass: "topAngle",
+          attrs: {
+            width: "100%",
+            viewBox: "0 0 100 100",
+            preserveAspectRatio: "none"
+          }
+        },
+        [
+          _c("polygon", {
+            style: _vm.styles.backPlate,
+            attrs: { points: "100,100 100,0 60,0 0,100" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "svg",
+        {
+          style: _vm.styles.bottomSquare,
+          attrs: {
+            width: "100%",
+            viewBox: "0 0 100 100",
+            preserveAspectRatio: "none"
+          }
+        },
+        [
+          _c("rect", {
+            style: _vm.styles.backPlate,
+            attrs: { x: "0", y: "0", width: "100", height: "100" }
+          })
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -42737,7 +42794,7 @@ var render = function() {
           { staticClass: "text-block" },
           [
             _c("transition", { attrs: { name: "title-slide" } }, [
-              _vm.showTitle
+              _vm.visible
                 ? _c("h1", { staticClass: "work-title" }, [
                     _vm._v(_vm._s(_vm.blockTitle))
                   ])
@@ -42745,7 +42802,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("transition", { attrs: { name: "divider-slide" } }, [
-              _vm.showDivider
+              _vm.visible
                 ? _c("object", {
                     staticClass: "divider",
                     attrs: { width: "35%", height: "5px" }
@@ -42757,10 +42814,10 @@ var render = function() {
               "transition",
               {
                 attrs: { name: "description-slide" },
-                on: { "after-leave": _vm.changeState }
+                on: { "after-leave": _vm.slideIn }
               },
               [
-                _vm.showDescription
+                _vm.visible
                   ? _c("p", { staticClass: "work-text" }, [
                       _vm._v(_vm._s(_vm.blockText))
                     ])
@@ -54395,10 +54452,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/fonts/Avenir-Black/Avenir-Black.svg":
+/***/ "./resources/assets/fonts/Avenir-Black/Avenir-Black.eot":
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/Avenir-Black.svg?d8b3e817ef60e58ea26a1be0ff88c9d0";
+module.exports = "/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54";
 
 /***/ }),
 
@@ -54420,6 +54477,118 @@ module.exports = "/fonts/Avenir-Black.woff?bab406dfde44985470f28b5f5e6bb9b9";
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/Avenir-Black.woff2?4e68f50f05418205bd9a8f9408431836";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.eot":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-ExtraBold.eot?2a921cb65a4a7f0bb83f979c5a0adae7";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.ttf":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-ExtraBold.ttf?2644d12fb7097c0d24b8eb2ba9a9d2c7";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.woff":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-ExtraBold.woff?3f1eb040b732b6b95d74487384adf7dc";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.woff2":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-ExtraBold.woff2?1187ec4a1587b932d64a244a0dd5afad";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.eot":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Light.eot?fadc43fb76a4005c77ae82962fc87962";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.ttf":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Light.ttf?1117ced76f8ab82a22704b2eff523df5";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.woff":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Light.woff?d3e4b6d7039586500e06edfea40ae2cb";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Light/hinted-OpenSans-Light.woff2":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Light.woff2?5e30599964c513b5e9541dc39ee5fd03";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.eot":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Regular.eot?1bb6f2f60b6eb105c28093f84c37de21";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.ttf":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Regular.ttf?ff9a91a23e708815cb13edf043b47908";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.woff":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Regular.woff?b091742142060e36d9d915ef51e20933";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-Regular/hinted-OpenSans-Regular.woff2":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-Regular.woff2?4cc962338ccb29d23361e1f2ff6d0bb8";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.eot":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-SemiBold.eot?e0fbd48698f2878018712c66e571246a";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.ttf":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-SemiBold.ttf?073d7d0021e07d51bf507be498e3892e";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.woff":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-SemiBold.woff?efd80805283ab1f6974a46aac50eb391";
+
+/***/ }),
+
+/***/ "./resources/assets/fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.woff2":
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/hinted-OpenSans-SemiBold.woff2?eb5a2de0881a3829dd45ba4ef3f9933f";
 
 /***/ }),
 
@@ -54627,6 +54796,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_awesome_swiper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_awesome_swiper__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_swiper_dist_css_swiper_css__ = __webpack_require__("./node_modules/swiper/dist/css/swiper.css");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_swiper_dist_css_swiper_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_swiper_dist_css_swiper_css__);
+// DONE: Create forward- aand backward buttons
+// TODO: Mobile Version
+// DONE: Fix swapping-resize bug on chrome
+// TODO: Determine aspect ratio, set globally and define components based on that
+// TODO: Add SVG to Mobile
+// TODO: Remove Ben-Ey from mobile
+// TODO: Add title and text to mobile
+// TODO: Add social icons to mobile
+// TODO: Set slide correctly when switching from landscape to portrait
+// TODO: Loading screen {use plugin for that}
+
 
 
 
