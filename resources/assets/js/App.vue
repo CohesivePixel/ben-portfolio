@@ -115,5 +115,6 @@ export default {
     width: 100%;
     top: 50%;
     transform: translateY(-45%);
+    overflow: hidden;
   }
 </style>
