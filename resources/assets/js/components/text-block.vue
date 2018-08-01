@@ -2,13 +2,13 @@
   <div class="elemental-cock">
     <div class="text-block" v-if="this.blockTitle">
       <transition name="title-slide">
-        <h1 class="work-title" v-if="showTitle">{{ blockTitle }}</h1>
+        <h1 class="work-title" v-if="visible">{{ blockTitle }}</h1>
       </transition>
       <transition name="divider-slide">
-        <object class="divider" width="35%" height="5px" v-if="showDivider"></object>
+        <object class="divider" width="35%" height="5px" v-if="visible"></object>
       </transition>
-      <transition name="description-slide" v-on:after-leave="changeState">
-        <p class="work-text" v-if="showDescription">{{ blockText }}</p>
+      <transition name="description-slide" v-on:after-leave="slideIn">
+        <p class="work-text" v-if="visible">{{ blockText }}</p>
       </transition>
     </div>
   </div>
@@ -23,9 +23,7 @@ export default {
       shared: common,
       blockTitle: '',
       blockText: '',
-      showTitle: 1,
-      showDivider: 1,
-      showDescription: 1
+      visible: 1
     }
   },
 
@@ -40,7 +38,6 @@ export default {
 
   beforeUpdate() {
     this.setBlockHeight();
-    this.getInfo();
   },
 
   methods: {
@@ -57,15 +54,11 @@ export default {
         return
     },
     slideOut() {
-      this.showTitle = 0;
-      this.showDivider = 0;
-      this.showDescription = 0;
+      this.visible = 0;
     },
-    changeState() {
+    slideIn() {
       this.getInfo();
-      this.showTitle = 1;
-      this.showDivider = 1;
-      this.showDescription = 1;
+      this.visible = 1;
     }
   }
 }
