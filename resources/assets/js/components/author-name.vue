@@ -32,27 +32,18 @@ export default {
     margin: 0;
 
     @media(max-aspect-ratio: 1/1) {
-      padding-top: 0;
-      padding-left: 9.5vw;
+      display: none;
     }
 
     .lastname {
       font-family: 'Avenir-Black';
       font-size: 2.8vw;
       float: left;
-
-      @media(max-aspect-ratio: 1/1) {
-        font-size: 5vw;
-      }
     }
 
     .firstname {
       @extend .lastname;
       margin-right: 1.6vw;
-
-      @media(max-aspect-ratio: 1/1) {
-
-      }
     }
   }
 </style>
