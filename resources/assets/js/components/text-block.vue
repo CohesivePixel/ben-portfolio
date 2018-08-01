@@ -31,12 +31,16 @@ export default {
 
   created() {
     this.setBlockHeight();
-    this.getTitle();
-    this.getDesc();
+    this.getInfo();
 
     Event.$on('swipe', () => {
       this.slideOut()
     })
+  },
+
+  beforeUpdate() {
+    this.setBlockHeight();
+    this.getInfo();
   },
 
   methods: {
@@ -44,15 +48,13 @@ export default {
       const imgFrame = document.getElementById('pic');
       return;
     },
-    getTitle() {
-        this.axios.get('/v1/works/' + this.shared.active + '/title')
-            .then(response => this.blockTitle = response.data[0])
+    getInfo() {
+        this.axios.get('/v1/works/' + this.shared.active + '/information')
+            .then(response => {
+              this.blockTitle = response.data[0]
+              this.blockText = response.data[1]
+            });
         return
-    },
-    getDesc() {
-      this.axios.get('/v1/works/' + this.shared.active + '/description')
-          .then(response => this.blockText = response.data[0])
-      return
     },
     slideOut() {
       this.showTitle = 0;
@@ -60,8 +62,7 @@ export default {
       this.showDescription = 0;
     },
     changeState() {
-      this.getTitle();
-      this.getDesc();
+      this.getInfo();
       this.showTitle = 1;
       this.showDivider = 1;
       this.showDescription = 1;

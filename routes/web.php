@@ -21,12 +21,8 @@ Route::get('/v1/works/{page}/image', function($path) {
     return [$image[0], $vertical[0]];
 });
 
-Route::get('/v1/works/{page}/title', function($title) {
-    $title = App\Work::where('pagenumber', '=', $title)->pluck('title');
-    return $title;
-});
-
-Route::get('/v1/works/{page}/description', function($description) {
-    $description = App\Work::where('pagenumber', '=', $description)->pluck('description');
-    return $description;
+Route::get('/v1/works/{page}/information', function($page) {
+    $title = App\Work::where('pagenumber', '=', $page)->pluck('title');
+    $description = App\Work::where('pagenumber', '=', $page)->pluck('description');
+    return [$title[0], $description[0]];
 });

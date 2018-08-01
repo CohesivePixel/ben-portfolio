@@ -54,7 +54,7 @@ export default {
     setReady() {
       this.styles.desktopBackplate.fill = this.shared.colour.vibrant;
       this.styles.mobileBackplate.fill = this.shared.colour.vibrant;
-      this.styles.bottomSquare.height = '10vh';
+      this.styles.bottomSquare.height = '30vh';
     }
   }
 }
