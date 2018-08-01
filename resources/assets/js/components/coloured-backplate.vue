@@ -33,7 +33,7 @@ export default {
           transition: 'fill .85s ease'
         },
         bottomSquare: {
-          height: '30vh',
+          height: '',
           marginTop: '-1px',
           order: '2',
           flexGrow: '1'
@@ -42,9 +42,20 @@ export default {
     }
   },
 
+  created() {
+    this.setReady();
+  },
+
   beforeUpdate() {
-    this.styles.desktopBackplate.fill = this.shared.colour.vibrant;
-    this.styles.mobileBackplate.fill = this.shared.colour.vibrant;
+    this.setReady();
+  },
+
+  methods: {
+    setReady() {
+      this.styles.desktopBackplate.fill = this.shared.colour.vibrant;
+      this.styles.mobileBackplate.fill = this.shared.colour.vibrant;
+      this.styles.bottomSquare.height = '10vh';
+    }
   }
 }
 </script>
@@ -78,6 +89,10 @@ export default {
       bottom: 0;
       width: 100%;
       z-index: -1;
+
+      @media(min-aspect-ratio: 1/1) {
+        display: none;
+      }
 
       .topAngle {
           height: 25vh;
