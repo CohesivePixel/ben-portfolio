@@ -31,9 +31,9 @@ export default {
     padding-left: 5vw;
     margin: 0;
 
-    @media(max-aspect-ratio: 1/1) {
-      display: none;
-    }
+    // @media(max-aspect-ratio: 1/1) {
+    //   display: none;
+    // }
 
     .lastname {
       font-family: 'Avenir-Black';
