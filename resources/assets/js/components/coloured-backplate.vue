@@ -63,6 +63,7 @@ export default {
 
   .backplate-container {
     height: 100%;
+
     .desktop-backplate {
       position: absolute;
       bottom: 0;

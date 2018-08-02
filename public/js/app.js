@@ -2245,6 +2245,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       shared: __WEBPACK_IMPORTED_MODULE_0_src_app_js__["common"],
+      activeSet: '',
       swipeCustoms: {
         slidesPerView: 'auto',
         centeredSlides: true,
@@ -2263,14 +2264,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     };
   },
-
-
-  computed: {
-    swiper: function swiper() {
-      return this.$refs.workSwiper.swiper;
-    }
-  },
-
   created: function created() {
     var _this = this;
 
@@ -2288,16 +2281,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
 
+  computed: {
+    swiper: function swiper() {
+      return this.$refs.workSwiper.swiper;
+    },
+    active: function active() {
+      return this.shared.active;
+    }
+  },
+
+  watch: {
+    active: function active() {
+      this.swiper.slideTo(this.shared.active);
+    }
+  },
+
   methods: {
     sortWorks: function sortWorks() {
       this.orderedWorks = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.sortBy(this.works, ['page']);
     },
-    nextCard: function nextCard() {
-      this.shared.active += 1;
-      Event.$emit('swipe');
-    },
-    prevCard: function prevCard() {
-      this.shared.active -= 1;
+    switchCard: function switchCard() {
+      this.shared.active = this.swiper.activeIndex;
       Event.$emit('swipe');
     }
   }
@@ -8064,7 +8068,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.text-block {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 25vw;\n  float: right;\n  margin: 0 7vw;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.text-block {\n      position: fixed;\n      left: 0;\n}\n}\n.text-block .work-title {\n    font-family: 'Open-Sans-ExtraBold';\n    font-size: 3.4vw;\n    color: white;\n    width: 100%;\n    margin: 0 0 2vh 0;\n    letter-spacing: 5px;\n    text-align: right;\n}\n.text-block .work-text {\n    font-family: 'Open-Sans-Light';\n    font-size: 1.1vw;\n    color: white;\n    width: 100%;\n    letter-spacing: 0.35px;\n    float: left;\n    margin-top: 2vh;\n}\n.text-block .divider {\n    border: 1px solid white;\n    float: right;\n    display: block;\n    background-color: white;\n}\n", ""]);
+exports.push([module.i, "\n.text-block {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 25vw;\n  float: right;\n  margin: 0 7vw;\n  border: 1px solid;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.text-block {\n      position: relative;\n      margin-top: 50vh;\n}\n}\n@media (max-width: 425px) {\n.text-block {\n      margin-top: 0;\n}\n}\n.text-block .work-title {\n    font-family: 'Open-Sans-ExtraBold';\n    font-size: 3.4vw;\n    color: black;\n    width: 100%;\n    margin: 0 0 2vh 0;\n    letter-spacing: 5px;\n    text-align: right;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.text-block .work-title {\n        position: inherit;\n        right: 20vw;\n}\n}\n.text-block .work-text {\n    font-family: 'Open-Sans-Light';\n    font-size: 1.1vw;\n    color: white;\n    width: 100%;\n    letter-spacing: 0.35px;\n    float: left;\n    margin-top: 2vh;\n}\n@media (max-aspect-ratio: 1 / 1) {\n.text-block .work-text {\n        display: none;\n}\n}\n.text-block .divider {\n    border: 1px solid white;\n    float: right;\n    display: block;\n    background-color: white;\n}\n", ""]);
 
 // exports
 
@@ -42406,10 +42410,7 @@ var render = function() {
         {
           ref: "workSwiper",
           attrs: { options: _vm.swipeCustoms },
-          on: {
-            slideNextTransitionStart: _vm.nextCard,
-            slidePrevTransitionStart: _vm.prevCard
-          }
+          on: { slideChange: _vm.switchCard }
         },
         _vm._l(_vm.orderedWorks, function(work) {
           return _c("swiper-slide", { key: work.page }, [
@@ -54800,11 +54801,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // TODO: Mobile Version
 // DONE: Fix swapping-resize bug on chrome
 // TODO: Determine aspect ratio, set globally and define components based on that
-// TODO: Add SVG to Mobile
-// TODO: Remove Ben-Ey from mobile
+// DONE: Add SVG to Mobile
+// DONE: Remove Ben-Ey from mobile
 // TODO: Add title and text to mobile
 // TODO: Add social icons to mobile
-// TODO: Set slide correctly when switching from landscape to portrait
+// DONE: Set slide correctly when switching from landscape to portrait
 // TODO: Loading screen {use plugin for that}
 
 

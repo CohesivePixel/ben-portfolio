@@ -70,7 +70,6 @@ export default {
     },
     switchCard() {
       this.shared.active = this.swiper.activeIndex;
-      console.log(this.swiper.activeIndex);
       Event.$emit('swipe');
     }
   }

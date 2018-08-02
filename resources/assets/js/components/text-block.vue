@@ -2,7 +2,7 @@
   <div class="elemental-cock">
     <div class="text-block" v-if="this.blockTitle">
       <transition name="title-slide">
-        <h1 class="work-title" v-if="visible">{{ blockTitle }}</h1>
+        <h1 class="work-title" :style="titleStyle" v-if="visible">{{ blockTitle }}</h1>
       </transition>
       <transition name="divider-slide">
         <object class="divider" width="35%" height="5px" v-if="visible"></object>
@@ -23,8 +23,21 @@ export default {
       shared: common,
       blockTitle: '',
       blockText: '',
-      visible: 1
+      visible: 1,
+      titleStyle: {
+        color: 'white'
+      }
     }
+  },
+
+  computed: {
+    active() {
+      return this.shared.active;
+    }
+  },
+
+  watch: {
+
   },
 
   created() {
@@ -78,18 +91,28 @@ export default {
     margin: 0 7vw;
 
     @media(max-aspect-ratio: 1/1) {
-      position: fixed;
-      left: 0;
+      position: relative;
+      margin-top: 20vh;
+    }
+
+    @media(max-width: 425px) {
+      margin-top: 5vh;
     }
 
     .work-title {
       font-family: 'Open-Sans-ExtraBold';
       font-size: 3.4vw;
-      color: white;
+      color: black;
       width: 100%;
       margin: 0 0 $divider-distance 0;
       letter-spacing: 5px;
       text-align: right;
+
+      @media(max-aspect-ratio: 1/1) {
+        position: inherit;
+        right: 62.5vw;
+        text-align: left;
+      }
     }
 
     .work-text {
@@ -100,6 +123,10 @@ export default {
       letter-spacing: 0.35px;
       float: left;
       margin-top: $divider-distance;
+
+      @media(max-aspect-ratio: 1/1) {
+        display: none;
+      }
     }
 
     .divider {

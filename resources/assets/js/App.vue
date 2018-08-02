@@ -32,17 +32,6 @@ const rgbHex = require('rgb-hex');
 export default {
   name: 'app',
 
-  data () {
-    return {
-      shared: common,
-      image: ''
-    }
-  },
-
-  created() {
-    this.defineColours()
-  },
-
   components: {
       ColouredBackplate,
       AuthorName,
@@ -52,6 +41,24 @@ export default {
       SocialIcons,
       NavButtons,
       WorkSwiper
+  },
+
+  data () {
+    return {
+      shared: common,
+      image: ''
+    }
+  },
+
+  created() {
+    this.defineColours()
+    window.addEventListener('resize', (e) => {
+      this.getAspectRatio();
+    })
+  },
+
+  mounted() {
+    this.getAspectRatio();
   },
 
   computed: {
@@ -75,12 +82,10 @@ export default {
         this.shared.active -= 1
         Event.$emit('swipe');
       }
-
       if(e.deltaY > 0 && this.shared.active < this.shared.complete) {
         this.shared.active += 1
         Event.$emit('swipe');
       }
-
     }, 2000, {
       'leading': true,
       'trailing': false
@@ -101,6 +106,13 @@ export default {
       const g = rgb._rgb[1];
       const b = rgb._rgb[2];
       return rgbHex(r, g, b);
+    },
+    getAspectRatio() {
+      if(window.innerWidth < window.innerHeight) {
+        this.shared.portrait = true
+      } else {
+        this.shared.portrait = false;
+      }
     }
   }
 }

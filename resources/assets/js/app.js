@@ -14,7 +14,7 @@ import App from './App.vue'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-Vue.use(VueAxios, axios);
+Vue.use(VueAxios, axios)
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -28,6 +28,7 @@ export let common = {
     active: 0,
     complete: 6,
     vertical: 0,
+    portrait: false,
     colour: {
       vibrant: '',
       lightVibrant: '',
