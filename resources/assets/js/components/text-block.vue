@@ -2,10 +2,10 @@
   <div class="elemental-cock">
     <div class="text-block" v-if="this.blockTitle">
       <transition name="title-slide">
-        <h1 class="work-title" :style="titleStyle" v-if="visible">{{ blockTitle }}</h1>
+        <h1 class="work-title" :style="styles.titleStyle" v-if="visible">{{ blockTitle }}</h1>
       </transition>
       <transition name="divider-slide">
-        <object class="divider" width="35%" height="5px" v-if="visible"></object>
+        <object class="divider" :style="styles.dividerStyle" v-if="visible"></object>
       </transition>
       <transition name="description-slide" v-on:after-leave="slideIn">
         <p class="work-text" v-if="visible">{{ blockText }}</p>
@@ -24,8 +24,13 @@ export default {
       blockTitle: '',
       blockText: '',
       visible: 1,
-      titleStyle: {
-        color: 'white'
+      styles: {
+        titleStyle: {
+          color: ''
+        },
+        dividerStyle: {
+          backgroundColor: ''
+        }
       }
     }
   },
@@ -33,11 +38,32 @@ export default {
   computed: {
     active() {
       return this.shared.active;
+    },
+    portrait() {
+      return this.shared.portrait;
+    },
+    vibrant() {
+      return this.shared.colour.vibrant;
     }
   },
 
   watch: {
-
+    vibrant() {
+      if(this.portrait) {
+        this.styles.dividerStyle.backgroundColor = this.shared.colour.vibrant;
+      } else {
+        this.styles.dividerStyle.backgroundColor = 'white';
+      }
+    },
+    portrait() {
+      if(this.portrait) {
+        this.styles.titleStyle.color = '#545454'
+        this.styles.dividerStyle.backgroundColor = this.shared.colour.vibrant;
+      } else {
+        this.styles.titleStyle.color = 'white'
+        this.styles.dividerStyle.backgroundColor = 'white';
+      }
+    }
   },
 
   created() {
@@ -92,26 +118,44 @@ export default {
 
     @media(max-aspect-ratio: 1/1) {
       position: relative;
-      margin-top: 20vh;
+      margin: 20vh 4vw 0;
+      float: left;
     }
 
     @media(max-width: 425px) {
-      margin-top: 5vh;
+      margin-top: 3vh;
     }
 
     .work-title {
       font-family: 'Open-Sans-ExtraBold';
       font-size: 3.4vw;
-      color: black;
+      color: white;
       width: 100%;
       margin: 0 0 $divider-distance 0;
       letter-spacing: 5px;
       text-align: right;
 
       @media(max-aspect-ratio: 1/1) {
-        position: inherit;
-        right: 62.5vw;
         text-align: left;
+        letter-spacing: 2px;
+        font-size: 4.75vw;
+      }
+    }
+
+    .divider {
+      border: 1px solid white;
+      float: right;
+      display: block;
+      width: 35%;
+      height: 5px;
+      background-color: white;
+
+      @media(max-aspect-ratio: 1/1) {
+        border: none;
+        height: 3px;
+        width: 80%;
+        background-color: green;
+        float: left;
       }
     }
 
@@ -128,14 +172,5 @@ export default {
         display: none;
       }
     }
-
-    .divider {
-      border: 1px solid white;
-      float: right;
-      display: block;
-      background-color: white;
-    }
-
-
   }
 </style>
