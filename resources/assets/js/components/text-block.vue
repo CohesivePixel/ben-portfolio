@@ -136,7 +136,5 @@ export default {
       display: block;
       background-color: white;
     }
-
-
   }
 </style>
