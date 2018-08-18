@@ -92,18 +92,17 @@ export default {
 
     @media(max-aspect-ratio: 1/1) {
       position: relative;
-      margin: 20vh 4vw 0;
-      float: left;
+      margin-top: 20vh;
     }
 
     @media(max-width: 425px) {
-      margin-top: 3vh;
+      margin-top: 5vh;
     }
 
     .work-title {
       font-family: 'Open-Sans-ExtraBold';
       font-size: 3.4vw;
-      color: white;
+      color: black;
       width: 100%;
       margin: 0 0 $divider-distance 0;
       letter-spacing: 5px;
