@@ -89,26 +89,25 @@ export default {
     width: 25vw;
     float: right;
     margin: 0 7vw;
-    border: 1px solid;
 
     @media(max-aspect-ratio: 1/1) {
       position: relative;
-      margin-top: 20vh;
+      margin: 20vh 4vw 0;
+      float: left;
     }
 
     @media(max-width: 425px) {
-      margin-top: 5vh;
+      margin-top: 3vh;
     }
 
     .work-title {
       font-family: 'Open-Sans-ExtraBold';
       font-size: 3.4vw;
-      color: black;
+      color: white;
       width: 100%;
       margin: 0 0 $divider-distance 0;
       letter-spacing: 5px;
       text-align: right;
-      border: 1px solid;
 
       @media(max-aspect-ratio: 1/1) {
         position: inherit;
@@ -120,18 +119,14 @@ export default {
     .work-text {
       font-family: 'Open-Sans-Light';
       font-size: 1.1vw;
-      color: black;
+      color: white;
       width: 100%;
       letter-spacing: 0.35px;
       float: left;
       margin-top: $divider-distance;
-      border: 1px solid;
 
       @media(max-aspect-ratio: 1/1) {
-        position: relative;
-        left: 40vw;
-        font-size: 4vw;
-        width: 50vw;
+        display: none;
       }
     }
 
