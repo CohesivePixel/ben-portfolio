@@ -1,7 +1,7 @@
 // DONE: Create forward- aand backward buttons
 // TODO: Mobile Version
 // DONE: Fix swapping-resize bug on chrome
-// DONE: Determine aspect ratio, set globally and define components based on that
+// TODO: Determine aspect ratio, set globally and define components based on that
 // DONE: Add SVG to Mobile
 // DONE: Remove Ben-Ey from mobile
 // TODO: Add title and text to mobile
