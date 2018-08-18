@@ -1,5 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+<<<<<<< HEAD
     "/0.27c712afe4a611d40788.hot-update.js": "/0.27c712afe4a611d40788.hot-update.js"
+=======
+    "/0.bc4d6981e7d0591c9829.hot-update.js": "/0.bc4d6981e7d0591c9829.hot-update.js",
+    "/0.57be8ef61b8805293a9d.hot-update.js": "/0.57be8ef61b8805293a9d.hot-update.js",
+    "/0.7268b4a0b02e03e9442c.hot-update.js": "/0.7268b4a0b02e03e9442c.hot-update.js"
+>>>>>>> parent of b38524ad... author-name, work-softbox and nav-buttons only get activated and RENDERED in landscape mode now
 }
