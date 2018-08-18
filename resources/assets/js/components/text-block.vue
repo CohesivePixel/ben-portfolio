@@ -115,25 +115,27 @@ export default {
     width: 25vw;
     float: right;
     margin: 0 7vw;
+    border: 1px solid;
 
     @media(max-aspect-ratio: 1/1) {
-      position: relative;
-      margin: 20vh 4vw 0;
+      position: fixed;
+      margin: 35vh 4vw 0;
       float: left;
     }
 
     @media(max-width: 425px) {
-      margin-top: 3vh;
+      margin-top: 75vh;
     }
 
     .work-title {
       font-family: 'Open-Sans-ExtraBold';
       font-size: 3.4vw;
-      color: white;
+      color: black;
       width: 100%;
       margin: 0 0 $divider-distance 0;
       letter-spacing: 5px;
       text-align: right;
+      border: 1px solid;
 
       @media(max-aspect-ratio: 1/1) {
         text-align: left;
@@ -162,14 +164,18 @@ export default {
     .work-text {
       font-family: 'Open-Sans-Light';
       font-size: 1.1vw;
-      color: white;
+      color: black;
       width: 100%;
       letter-spacing: 0.35px;
       float: left;
       margin-top: $divider-distance;
+      border: 1px solid;
 
       @media(max-aspect-ratio: 1/1) {
-        display: none;
+        position: relative;
+        left: 40vw;
+        font-size: 4vw;
+        width: 50vw;
       }
     }
   }
