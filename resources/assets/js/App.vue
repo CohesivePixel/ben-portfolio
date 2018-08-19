@@ -122,12 +122,19 @@ export default {
   #app {
     height: 100%;
   }
-  
   .content-container {
     position: absolute;
     width: 100%;
     top: 50%;
     transform: translateY(-45%);
     overflow: visible;
+
+    @media(max-aspect-ratio: 1/1) {
+      position: relative;
+      width: 100%;
+      top: auto;
+      transform: none;
+      margin-top: 6.5vh;
+    }
   }
 </style>

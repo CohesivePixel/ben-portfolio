@@ -104,7 +104,6 @@ export default {
 </script>
 
 <style lang="scss">
-  $divider-distance: 2vh;
   $slide-distance: 200%;
   $slide-out-duration: .9s;
 
@@ -115,30 +114,40 @@ export default {
     width: 25vw;
     float: right;
     margin: 0 7vw;
-    border: 1px solid;
 
     @media(max-aspect-ratio: 1/1) {
-      position: relative;
+      position: initial;
+      top: auto;
+      right: auto;
+      width: 35vw;
       float: none;
-      margin: auto;
-      width: auto;
+      margin: 0 5vw;
     }
 
     .work-title {
       font-family: 'Open-Sans-ExtraBold';
       font-size: 3.4vw;
-      color: black;
+      color: white;
       width: 100%;
-      margin: 0 0 $divider-distance 0;
+      margin: 0 0 2vh 0;
       letter-spacing: 5px;
       text-align: right;
+
+      @media(max-aspect-ratio: 1/1) {
+        text-align: left;
+        font-size: 5vw;
+        letter-spacing: 2px;
+      }
     }
 
     .divider {
-      border: 1px solid white;
       float: right;
       display: block;
       background-color: white;
+
+      @media(max-aspect-ratio: 1/1) {
+        float: left;
+      }
     }
 
     .work-text {
@@ -148,7 +157,14 @@ export default {
       width: 100%;
       letter-spacing: 0.35px;
       float: left;
-      margin-top: $divider-distance;
+      margin-top: 6vh;
+
+      @media(max-aspect-ratio: 1/1) {
+        font-size: 4vw;
+        width: 55vw;
+        margin-left: 25vw;
+
+      }
     }
   }
 </style>
