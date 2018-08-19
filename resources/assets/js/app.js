@@ -1,14 +1,14 @@
 // DONE: Create forward- aand backward buttons
-// TODO: Mobile Version
+// DONE: Mobile Version
 // DONE: Fix swapping-resize bug on chrome
 // DONE: Determine aspect ratio, set globally and define components based on that
 // LEAVE IT: Add SVG to Mobile
 // DONE: Remove Ben-Ey from mobile
 // DONE: Add title and text to mobile
-// TODO: Add social icons to mobile
 // DONE: Set slide correctly when switching from landscape to portrait
-// TODO: Loading screen {use plugin for that}
 // DONE: Fix animations
+// TODO: Loading screen {use plugin for that}
+// TODO: Add social icons to mobile
 
 import Vue from 'vue'
 import App from './App.vue'
