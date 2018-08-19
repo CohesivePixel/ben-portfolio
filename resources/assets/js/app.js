@@ -25,7 +25,7 @@ require('assets/scss/main.scss');
 Event = new Vue();
 
 export let common = {
-    active: 0,
+    active: 1,    // Zet terug op 0 zodra backplate klaar is 
     complete: 6,
     vertical: 0,
     portrait: false,

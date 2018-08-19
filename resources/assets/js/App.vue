@@ -137,7 +137,6 @@ export default {
       width: 100%;
       top: auto;
       transform: none;
-      border: 1px solid;
     }
   }
 </style>
