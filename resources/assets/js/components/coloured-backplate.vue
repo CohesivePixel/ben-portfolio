@@ -49,7 +49,7 @@ export default {
   methods: {
     setReady() {
       this.styles.backPlate.fill = this.shared.colour.vibrant;
-      this.styles.bottomSquare.height = '30vh';
+      this.styles.bottomSquare.height = '50vh';
     }
   }
 }

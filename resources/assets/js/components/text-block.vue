@@ -153,10 +153,10 @@ export default {
     .work-text {
       font-family: 'Open-Sans-Light';
       font-size: 1.1vw;
-      color: white;
+      color: black;
       width: 100%;
       letter-spacing: 0.35px;
-      float: left;
+      // float: left;
       margin-top: 6vh;
 
       @media(max-aspect-ratio: 1/1) {
