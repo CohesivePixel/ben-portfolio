@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="elemental-cock">
+  <div class="text-container">
     <div class="text-block" v-if="this.blockTitle">
       <transition name="title-slide">
         <h1 class="work-title" :style="styles.titleStyle" v-if="visible">{{ blockTitle }}</h1>

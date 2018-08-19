@@ -2,7 +2,6 @@
   <div id="app" @wheel="slideNew($event)">
     <progress-bar :range="complete"></progress-bar>
     <work-swiper v-if="shared.portrait"></work-swiper>
-    <mobile-backplate v-if="shared.portrait"></mobile-backplate>
     <author-name v-if="!shared.portrait"></author-name>
     <div class="content-container">
       <work-softbox v-if="!shared.portrait"></work-softbox>

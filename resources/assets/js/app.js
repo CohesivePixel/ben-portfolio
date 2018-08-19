@@ -8,6 +8,7 @@
 // TODO: Add social icons to mobile
 // DONE: Set slide correctly when switching from landscape to portrait
 // TODO: Loading screen {use plugin for that}
+// DONE: Fix animations
 
 import Vue from 'vue'
 import App from './App.vue'
@@ -25,7 +26,7 @@ require('assets/scss/main.scss');
 Event = new Vue();
 
 export let common = {
-    active: 1,    // Zet terug op 0 zodra backplate klaar is
+    active: 0,
     complete: 6,
     vertical: 0,
     portrait: false,
