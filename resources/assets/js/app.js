@@ -1,10 +1,10 @@
 // DONE: Create forward- aand backward buttons
 // TODO: Mobile Version
 // DONE: Fix swapping-resize bug on chrome
-// TODO: Determine aspect ratio, set globally and define components based on that
-// TODO: Add SVG to Mobile
+// DONE: Determine aspect ratio, set globally and define components based on that
+// LEAVE IT: Add SVG to Mobile
 // DONE: Remove Ben-Ey from mobile
-// TODO: Add title and text to mobile
+// DONE: Add title and text to mobile
 // TODO: Add social icons to mobile
 // DONE: Set slide correctly when switching from landscape to portrait
 // TODO: Loading screen {use plugin for that}
@@ -25,10 +25,11 @@ require('assets/scss/main.scss');
 Event = new Vue();
 
 export let common = {
-    active: 1,    // Zet terug op 0 zodra backplate klaar is 
+    active: 1,    // Zet terug op 0 zodra backplate klaar is
     complete: 6,
     vertical: 0,
     portrait: false,
+    mobileTextHeight: 0,
     colour: {
       vibrant: '',
       lightVibrant: '',
