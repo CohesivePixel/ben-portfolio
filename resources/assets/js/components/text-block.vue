@@ -115,11 +115,13 @@ export default {
     width: 25vw;
     float: right;
     margin: 0 7vw;
+    border: 1px solid;
 
     @media(max-aspect-ratio: 1/1) {
       position: relative;
-      margin-top: 45vh;
-      width: 65%;
+      float: none;
+      margin: auto;
+      width: auto;
     }
 
     .work-title {
@@ -130,15 +132,6 @@ export default {
       margin: 0 0 $divider-distance 0;
       letter-spacing: 5px;
       text-align: right;
-
-      @media(max-aspect-ratio: 1/1) {
-        position: inherit;
-        right: 22vw;
-        text-align: left;
-        font-size: 4vw;
-        width: 40vw;
-        letter-spacing: 3px;
-      }
     }
 
     .divider {
@@ -146,11 +139,6 @@ export default {
       float: right;
       display: block;
       background-color: white;
-
-      @media (max-aspect-ratio: 1/1){
-        position: inherit;
-        right: 64vw;
-      }
     }
 
     .work-text {
@@ -161,10 +149,6 @@ export default {
       letter-spacing: 0.35px;
       float: left;
       margin-top: $divider-distance;
-
-      @media(max-aspect-ratio: 1/1) {
-        font-size: 3vw;
-      }
     }
   }
 </style>

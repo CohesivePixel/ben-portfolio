@@ -1,12 +1,12 @@
 <template>
   <div id="app" @wheel="slideNew($event)">
     <progress-bar :range="complete"></progress-bar>
-    <work-swiper></work-swiper>
-    <author-name></author-name>
+    <work-swiper v-if="shared.portrait"></work-swiper>
+    <author-name v-if="!shared.portrait"></author-name>
     <div class="content-container">
-      <work-softbox></work-softbox>
+      <work-softbox v-if="!shared.portrait"></work-softbox>
       <text-block></text-block>
-      <nav-buttons></nav-buttons>
+      <nav-buttons v-if="!shared.portrait"></nav-buttons>
     </div>
     <social-icons></social-icons>
     <coloured-backplate></coloured-backplate>
@@ -122,6 +122,7 @@ export default {
   #app {
     height: 100%;
   }
+  
   .content-container {
     position: absolute;
     width: 100%;

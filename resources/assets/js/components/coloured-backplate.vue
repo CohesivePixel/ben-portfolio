@@ -56,14 +56,12 @@ export default {
 </script>
 
 <style lang="scss">
-
   svg {
     float: left
   }
 
   .backplate-container {
     height: 100%;
-
     .desktop-backplate {
       position: absolute;
       bottom: 0;
