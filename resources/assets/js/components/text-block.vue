@@ -122,6 +122,7 @@ export default {
       width: 35vw;
       float: none;
       margin: 0 5vw;
+      padding: 5vh 0;
     }
 
     .work-title {
@@ -137,6 +138,7 @@ export default {
         text-align: left;
         font-size: 5vw;
         letter-spacing: 2px;
+        margin-left: 5vw;
       }
     }
 
@@ -147,6 +149,7 @@ export default {
 
       @media(max-aspect-ratio: 1/1) {
         float: left;
+        margin-left: 5vw;
       }
     }
 
@@ -162,7 +165,7 @@ export default {
       @media(max-aspect-ratio: 1/1) {
         font-size: 4vw;
         width: 55vw;
-        margin-left: 25vw;
+        margin-left: 20vw;
 
       }
     }
