@@ -2,6 +2,7 @@
   <div id="app" @wheel="slideNew($event)">
     <progress-bar :range="complete"></progress-bar>
     <work-swiper v-if="shared.portrait"></work-swiper>
+    <mobile-backplate v-if="shared.portrait"></mobile-backplate>
     <author-name v-if="!shared.portrait"></author-name>
     <div class="content-container">
       <work-softbox v-if="!shared.portrait"></work-softbox>
@@ -9,7 +10,7 @@
       <nav-buttons v-if="!shared.portrait"></nav-buttons>
     </div>
     <social-icons></social-icons>
-    <coloured-backplate></coloured-backplate>
+    <coloured-backplate v-if="!shared.portrait"></coloured-backplate>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import TextBlock from 'components/text-block.vue';
 import SocialIcons from 'components/social-icons.vue';
 import NavButtons from 'components/nav-buttons.vue';
 import WorkSwiper from 'components/work-swiper.vue';
+import MobileBackplate from 'components/mobile-backplate.vue';
 
 const vibrant = require('node-vibrant');
 const rgbHex = require('rgb-hex');
@@ -40,7 +42,8 @@ export default {
       TextBlock,
       SocialIcons,
       NavButtons,
-      WorkSwiper
+      WorkSwiper,
+      MobileBackplate
   },
 
   data () {
@@ -127,14 +130,13 @@ export default {
     width: 100%;
     top: 50%;
     transform: translateY(-45%);
-    overflow: visible;
+    overflow: hidden;
 
     @media(max-aspect-ratio: 1/1) {
       position: relative;
       width: 100%;
       top: auto;
       transform: none;
-      margin-top: 6.5vh;
     }
   }
 </style>
