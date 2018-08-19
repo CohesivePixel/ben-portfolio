@@ -113,7 +113,7 @@ export default {
     right: 0;
     width: 25vw;
     float: right;
-    margin: 0 7vw;
+    margin: 10vh 7vw;
 
     @media(max-aspect-ratio: 1/1) {
       position: initial;

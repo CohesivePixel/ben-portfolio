@@ -130,12 +130,14 @@ export default {
     top: 50%;
     transform: translateY(-45%);
     overflow: hidden;
+    padding: 10vh 0;
 
     @media(max-aspect-ratio: 1/1) {
       position: relative;
       width: 100%;
       top: auto;
       transform: none;
+      padding: 0;
     }
   }
 </style>
