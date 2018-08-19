@@ -1,8 +1,21 @@
+// Animations
 @import 'animations';
+
+// Fonts
 @import 'fonts';
+
+// Variables
+@import 'variables';
 
 html, body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  @media(max-aspect-ratio: 1/1) {
+    overflow: visible;
+  }
 }
+
+// * {
+//   border: 1px solid;
+// }

@@ -10,6 +10,9 @@ $slide-out-duration: .9s;
   transition: all $slide-out-duration ease;
   transition-delay: .3s;
   transform: translateX($slide-distance);
+  @media(max-aspect-ratio: 1/1) {
+    transform: translateX(-200%);
+  }
 }
 
 .title-slide-enter-active {
@@ -18,6 +21,9 @@ $slide-out-duration: .9s;
 
 .title-slide-enter {
   transform: translateX($slide-distance);
+  @media(max-aspect-ratio: 1/1) {
+    transform: translateX(-200%);
+  }
 }
 /*
  * End of Title Animation
@@ -30,6 +36,9 @@ $slide-out-duration: .9s;
   transition: all $slide-out-duration ease;
   transition-delay: .1s;
   transform: translateX($slide-distance);
+  @media(max-aspect-ratio: 1/1) {
+    transform: translateX(-200%);
+  }
 }
 
 .divider-slide-enter-active {
@@ -39,6 +48,9 @@ $slide-out-duration: .9s;
 
 .divider-slide-enter {
   transform: translateX($slide-distance);
+  @media(max-aspect-ratio: 1/1) {
+    transform: translateX(-200%);
+  }
 }
 /*
  * End of Divider Animation

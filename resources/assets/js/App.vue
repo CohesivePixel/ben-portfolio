@@ -1,15 +1,15 @@
 <template>
   <div id="app" @wheel="slideNew($event)">
     <progress-bar :range="complete"></progress-bar>
-    <work-swiper></work-swiper>
-    <author-name></author-name>
+    <work-swiper v-if="shared.portrait"></work-swiper>
+    <author-name v-if="!shared.portrait"></author-name>
     <div class="content-container">
-      <work-softbox></work-softbox>
+      <work-softbox v-if="!shared.portrait"></work-softbox>
       <text-block></text-block>
-      <nav-buttons></nav-buttons>
+      <nav-buttons v-if="!shared.portrait"></nav-buttons>
     </div>
     <social-icons></social-icons>
-    <coloured-backplate></coloured-backplate>
+    <coloured-backplate v-if="!shared.portrait"></coloured-backplate>
   </div>
 </template>
 
@@ -25,12 +25,25 @@ import TextBlock from 'components/text-block.vue';
 import SocialIcons from 'components/social-icons.vue';
 import NavButtons from 'components/nav-buttons.vue';
 import WorkSwiper from 'components/work-swiper.vue';
+import MobileBackplate from 'components/mobile-backplate.vue';
 
 const vibrant = require('node-vibrant');
 const rgbHex = require('rgb-hex');
 
 export default {
   name: 'app',
+
+  components: {
+      ColouredBackplate,
+      AuthorName,
+      ProgressBar,
+      WorkSoftbox,
+      TextBlock,
+      SocialIcons,
+      NavButtons,
+      WorkSwiper,
+      MobileBackplate
+  },
 
   data () {
     return {
@@ -41,17 +54,13 @@ export default {
 
   created() {
     this.defineColours()
+    window.addEventListener('resize', (e) => {
+      this.getAspectRatio();
+    })
   },
 
-  components: {
-      ColouredBackplate,
-      AuthorName,
-      ProgressBar,
-      WorkSoftbox,
-      TextBlock,
-      SocialIcons,
-      NavButtons,
-      WorkSwiper
+  mounted() {
+    this.getAspectRatio();
   },
 
   computed: {
@@ -75,12 +84,10 @@ export default {
         this.shared.active -= 1
         Event.$emit('swipe');
       }
-
       if(e.deltaY > 0 && this.shared.active < this.shared.complete) {
         this.shared.active += 1
         Event.$emit('swipe');
       }
-
     }, 2000, {
       'leading': true,
       'trailing': false
@@ -101,6 +108,13 @@ export default {
       const g = rgb._rgb[1];
       const b = rgb._rgb[2];
       return rgbHex(r, g, b);
+    },
+    getAspectRatio() {
+      if(window.innerWidth < window.innerHeight) {
+        this.shared.portrait = true
+      } else {
+        this.shared.portrait = false;
+      }
     }
   }
 }
@@ -115,5 +129,13 @@ export default {
     width: 100%;
     top: 50%;
     transform: translateY(-45%);
+    overflow: hidden;
+
+    @media(max-aspect-ratio: 1/1) {
+      position: relative;
+      width: 100%;
+      top: auto;
+      transform: none;
+    }
   }
 </style>

@@ -4,9 +4,44 @@
 @font-face {
     font-family: 'Avenir-Black';
     src:  url('../fonts/Avenir-Black/Avenir-Black.ttf') format('truetype'),
+          url('../fonts/Avenir-Black/Avenir-Black.eot') format('embedded-opentype'),
           url('../fonts/Avenir-Black/Avenir-Black.woff') format('woff'),
-          url('../fonts/Avenir-Black/Avenir-Black.woff2') format('woff2'),
-          url('../fonts/Avenir-Black/Avenir-Black.svg') format('svg');
+          url('../fonts/Avenir-Black/Avenir-Black.woff2') format('woff2');
     font-weight: 900;
     font-style: normal;
+}
+
+/**
+/// Open Sans
+**/
+@font-face {
+  font-family: 'Open-Sans-ExtraBold';
+  src:  url('../fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.ttf') format('truetype'),
+        url('../fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.eot') format('embedded-opentype'),
+        url('../fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.woff') format('woff'),
+        url('../fonts/Open-Sans-ExtraBold/hinted-OpenSans-ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Open-Sans-Light';
+  src:  url('../fonts/Open-Sans-Light/hinted-OpenSans-Light.ttf') format('truetype'),
+        url('../fonts/Open-Sans-Light/hinted-OpenSans-Light.eot') format('embedded-opentype'),
+        url('../fonts/Open-Sans-Light/hinted-OpenSans-Light.woff') format('woff'),
+        url('../fonts/Open-Sans-Light/hinted-OpenSans-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Open-Sans-Regular';
+  src:  url('../fonts/Open-Sans-Regular/hinted-OpenSans-Regular.ttf') format('truetype'),
+        url('../fonts/Open-Sans-Regular/hinted-OpenSans-Regular.eot') format('embedded-opentype'),
+        url('../fonts/Open-Sans-Regular/hinted-OpenSans-Regular.woff') format('woff'),
+        url('../fonts/Open-Sans-Regular/hinted-OpenSans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Open-Sans-SemiBold';
+  src:  url('../fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.ttf') format('truetype'),
+        url('../fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.eot') format('embedded-opentype'),
+        url('../fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.woff') format('woff'),
+        url('../fonts/Open-Sans-SemiBold/hinted-OpenSans-SemiBold.woff2') format('woff2');
 }
