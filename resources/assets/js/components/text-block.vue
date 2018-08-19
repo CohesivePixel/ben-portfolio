@@ -156,17 +156,16 @@ export default {
     .work-text {
       font-family: 'Open-Sans-Light';
       font-size: 1.1vw;
-      color: black;
+      color: white;
       width: 100%;
       letter-spacing: 0.35px;
-      // float: left;
       margin-top: 6vh;
 
       @media(max-aspect-ratio: 1/1) {
         font-size: 4vw;
         width: 55vw;
         margin-left: 20vw;
-
+        color: black;
       }
     }
   }
